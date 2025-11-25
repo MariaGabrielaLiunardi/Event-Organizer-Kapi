@@ -43,7 +43,7 @@ Berikut keahlian masing-masing anggota tim
 * Requirement engineer
 
 Tugas-tugas dan pihak yang terlibat dilihat melalui dokumen perencanaan proyek berikut:
-https://docs.google.com/document/d/11L1wusnYkidiuLdbF4HsNNt395FY6GrOHKME7JGDMOA/edit?pli=1\&tab=t.0 
+(akan diperbarui setelah penjadwalan)
 
 
 ### **Petunjuk pengerjaan**
