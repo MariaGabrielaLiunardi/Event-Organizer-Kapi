@@ -13,17 +13,17 @@ Dengan dibuatnya usaha baru di bidang jasa dan layanan event organizer milik Kap
 
 # Aturan Kerja
 
-### **Pembagian Tugas**
+### Pembagian Tugas
 Berikut keahlian masing-masing anggota tim
 
 **Maria Gabriela Liunardi:**
 * Business analyst 
 * Project manager 
 * Risk Manager
-* Full stack developer 3 
-* Database designer 1 
-* Database developer 2 
-* Technical writer 
+* Full stack developer 3
+* Database designer 1
+* Database developer 2
+* Technical writer
 
 **Tya Kanaya:**
 * System architect 
@@ -42,26 +42,28 @@ Berikut keahlian masing-masing anggota tim
 * Database developer 1 
 * Requirement engineer
 
-Tugas-tugas dan pihak yang terlibat dilihat melalui dokumen perencanaan proyek berikut:
-(akan diperbarui setelah penjadwalan)
+Tugas-tugas dan jadwal pengerjaan dilihat melalui dokumen perencanaan proyek berikut:
+https://docs.google.com/document/d/11L1wusnYkidiuLdbF4HsNNt395FY6GrOHKME7JGDMOA/edit?pli=1\&tab=t.0
 
 
-### **Petunjuk pengerjaan**
+### Petunjuk pengerjaan
+
 **Link Repository** yang digunakan adalah sebagai berikut:
 https://github.com/MariaGabrielaLiunardi/Event-Organizer-Kapi.git
 
 **Kanban Board** dapat diakses melalui link:
-https://trello.com/b/X1xzDzpd/event-organizer-kapi 
+https://trello.com/b/X1xzDzpd/event-organizer-kapi
 
 **Langkah pengerjaan:**
-
 1. Pindah task yang sedang dikerjakan pada kanban board ke kolom “Dikerjakan”
 2. Push setiap hasil pengerjaan task ke branch masing-masing kemudian buat pull request ke branch sprint. Pengerjaan akan diulas kembali oleh PM sebelum dilakukan merge ke branch sprint
 3. Untuk testing, pull program dari branch sprint, lalu ulangi langkah 1-2 setelah memperbaiki bug. Pindah  task yang sedang dikerjakan pada kanban board ke kolom “Testing”
-4. Pada akhir sprint (saat launching) PM melakukan merge ke branch main. 
+4. Pada akhir sprint (saat launching) PM melakukan merge ke branch main.
 5. Setiap task yang selesai dikerjakan dipindah ke kolom “Done” pada kanban board
 
 
 ### Saluran Komunikasi
 Komunikasi dilakukan melalui LINE untuk chat dan Discord untuk voice chat
+
+
 
