@@ -67,3 +67,28 @@ Komunikasi dilakukan melalui LINE untuk chat dan Discord untuk voice chat
 
 
 
+# Ruang Lingkup Proyek
+Ruang lingkup proyek ini mencakup perancangan, pengembangan, pengujian, dan implementasi sistem informasi event organizer Kapi menggunakan pendekatan agile. Pekerjaan dibagi dalam beberapa tahap dengan keluaran (increment) yang bisa langsung digunakan dan ditinjau oleh user secara bertahap. 
+
+1. Setiap tahap meliputi: 
+    a. Pemilihan fitur yang akan dikerjakan. 
+    b. Pengembangan modul sesuai prioritas.
+    c. Testing (unit testing, quality control, dan UAT). 
+    d. Feedback dari pemilik usaha dan asisten.
+2. Modul-modul utama akan dikembangkan dalam tahapan berikut: 
+    a. Tahap 1: Modul manajemen asisten.
+    b. Tahap 2: Modul manajemen vendor dan kategori vendor. 
+    c. Tahap 3: Modul manajemen klien. 
+    d. Tahap 4: Modul manajemen event dan jenis event. 
+    e. Tahap 5: Modul laporan terkait vendor, event, dan budgeting. 
+3. Data yang dikelola:
+    a. Data asisten. 
+    b. Data vendor dan jenis vendor. 
+    c. Data klien.
+    d. Data event dan jenis event. 
+4. Merealisasikan desain basis data serta sistem berbasis CLI ke dalam bentuk program.
+5. Pelatihan penggunaan aplikasi bagi pemilik usaha dan asisten. 
+6. Menyusun jadwal kerja pada tiap tahapan. 
+7. Batasan sistem: 
+    a. Sistem tidak menangani pembayaran kepada vendor maupun event organizer. 
+    b. Sistem hanya mencatat data, menyajikan laporan, dan membantu budgeting.
