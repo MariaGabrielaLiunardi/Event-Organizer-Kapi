@@ -96,6 +96,7 @@ Ruang lingkup proyek ini mencakup perancangan, pengembangan, pengujian, dan impl
 # Language and Environtment
 Java version 21
 SQL Server version 17
+
 Struktur repo
 * main
 * sprint_manpro
