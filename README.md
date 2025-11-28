@@ -92,3 +92,24 @@ Ruang lingkup proyek ini mencakup perancangan, pengembangan, pengujian, dan impl
 7. Batasan sistem: 
     a. Sistem tidak menangani pembayaran kepada vendor maupun event organizer. 
     b. Sistem hanya mencatat data, menyajikan laporan, dan membantu budgeting.
+
+# Language and Environtment
+Java version 21
+SQL Server version 17
+
+Struktur repo
+* main
+* sprint_manpro
+* sprint_1
+* sprint_2
+* sprint_3
+* sprint_4
+* sprint_5
+* gaby
+* tea
+* livia
+
+Struktur folder
+* README.md
+* documentation
+* project
