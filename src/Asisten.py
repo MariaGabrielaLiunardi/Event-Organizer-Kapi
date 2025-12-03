@@ -17,92 +17,9 @@ def tampilkan_menu_asisten(id_User):
         if pilihan == '0':
             print("Keluar dari menu asisten.")
             break
-        elif pilihan == '1':
-            menu_klien()
+       
         elif pilihan == '2':
             menu_event(id_User)
-        else:
-            print("Pilihan tidak valid.")
-
-# Menu untuk kelola klien
-def menu_klien():
-    while True:
-        print("--- Data Klien ---")
-
-        print("1. Lihat data klien")
-        print("2. Tambah klien")
-        print("0. Kembali")
-
-        pilihan = input("Pilih menu: ")
-        print()
-
-        if pilihan == '0':
-            break
-        elif pilihan == '1':
-            print("\n--- Semua Data Klien ---")
-            lihat_semua_data_klien()
-
-            print("1. Lihat data klien spesifik")
-            print("0. Kembali")
-
-            pilihan = input("Pilih menu: ")
-
-            if pilihan == '0':
-                break
-            elif pilihan == '1':
-                try:
-                    id_Klien = int(input("\nID klien: "))
-                except ValueError:
-                    print("\nInput tidak valid. ID klien harus berupa angka.")
-                    continue
-
-                print("\n--- Data Klien Spesifik ---")
-                result = lihat_data_klien(id_Klien)
-
-                if result != 'Klien tidak ditemukan.':
-                    print("1. Edit klien")
-                    print("2. Hapus klien")
-                    print("0. Kembali")
-
-                    pilihan = input("Pilih menu: ")
-
-                    if pilihan == '0':
-                        break
-                    elif pilihan =='1':
-                        print("--- Edit Data Klien ---")
-                        nama_baru = input("Nama baru klien: ")
-                        alamat = input("Alamat baru: ")
-                        no_telepon = input("Nomor telepon baru: ")
-                        email = input("Email baru: ")
-                        edit_data_klien(nama_baru, alamat, no_telepon, email, id_Klien)
-
-                    elif pilihan == '2':
-                        print("\nHapus Klien?")
-                        print("1. Ya")
-                        print("2. Tidak")
-                        pilihan = input("Pilih menu: ")
-
-                        if pilihan == '1':
-                            hapus_data_klien(id_Klien)
-                        elif pilihan == '2':
-                            break
-                        else:
-                            print("\nPilihan tidak valid.")
-                    else:
-                        print("\nPilihan tidak valid.")
-
-            else:
-                print("Pilihan tidak valid.")
-
-        elif pilihan == '2':
-            print("--- Tambah Data Klien ---")
-            nama = input("Nama klien: ")
-            alamat = input("Alamat: ")
-            no_telepon = input("Nomor telepon: ")
-            email = input("Email: ")
-            tanggal_registrasi = input("Tanggal registrasi (YYYYMMDD): ")
-            tambah_klien(nama, alamat, no_telepon, email, tanggal_registrasi)
-
         else:
             print("Pilihan tidak valid.")
 
@@ -215,41 +132,6 @@ def menu_event(id_User):
         else:
             print("Pilihan tidak valid.")
 
-# Menu untuk laporan
-def menu_laporan(id_User):
-    while True:
-        print("--- Laporan Event ---")
-        print("1. Event yang sudah selesai")
-        print("2. Event yang sedang berlangsung")
-        print("3. Laporan berdasarkan jenis event")
-        print("0. Kembali")
-
-        pilihan = input("Pilih menu: ")
-        print()
-
-        if pilihan == '0':
-            break
-        elif pilihan == '1':
-            print("\n--- Completed Event ---")
-            completed_event(id_User)
-        elif pilihan == '2':
-            print("\n--- Upcoming Event ---")
-            upcoming_event(id_User)
-        elif pilihan == '3':
-            print("\n--- Laporan Event berdasarkan Jenis Event ---")
-
-            print("Jenis event yang tersedia: ")
-            lihat_data_jenis_event()
-
-            try:
-                id_JenisEvent = int(input("ID Jenis event: "))
-            except ValueError:
-                print("Input tidak valid, ID jenis event harus berupa angka.")
-                continue
-            lihat_event_berdasarkan_jenis(id_User, id_JenisEvent)
-        else:
-            print("Pilihan tidak valid.")
-
 # Menu untuk vendor
 def menu_vendor():
     while True:
@@ -278,87 +160,6 @@ def menu_vendor():
 
         else:
             print("Pilihan tidak valid.")
-
-# Fungsi kelola klien
-def tambah_klien(nama, alamat, no_telepon, email, tanggal_registrasi):
-    query = '''
-        INSERT INTO 
-            Klien (nama, alamat, no_telepon, email , tanggal_registrasi)
-        VALUES 
-            (?, ?, ?, ?, ?)
-    '''
-    print()
-    print("Input data Klien berhasil.") if execute_query(query, (nama, alamat, no_telepon, email, tanggal_registrasi)) else print("Input data Klien gagal.")
-
-def lihat_semua_data_klien():
-    hasil = fetch_all('''SELECT 
-                             id_Klien, nama, alamat, no_telepon, email, tanggal_registrasi 
-                         FROM 
-                             Klien 
-                         WHERE 
-                             isActive = 1 
-                         GROUP BY 
-                             id_Klien, nama, alamat, no_telepon, email, tanggal_registrasi''')
-    print()
-
-    if hasil:
-        kolom = ['Nama Klien', 'Alamat', 'No Telepon', 'Email',
-                 'Tanggal Registrasi', 'Nama Event']
-        print(tabulate(hasil, headers=kolom, tablefmt='grid'))
-        print()
-    else:
-        print("Tidak ada data klien ditemukan.")
-    print()
-
-def lihat_data_klien(id_Klien):
-    hasil = fetch_all('''SELECT 
-                                    id_Klien, nama, alamat, no_telepon, email, tanggal_registrasi
-                                FROM 
-                                    Klien
-                                WHERE 
-                                    isActive = 1 AND id_Klien = ?''', (id_Klien))
-    print()
-
-    if hasil:
-        kolom = ['ID Klien', 'Nama Klien', 'Alamat', 'No Telepon', 'Email', 'Tanggal Registrasi']
-        print(tabulate(hasil, headers=kolom, tablefmt='grid'))
-        print()
-    else:
-        print("Klien tidak ditemukan.\n")
-        return "Klien tidak ditemukan."
-
-def edit_data_klien(nama_baru, alamat_baru, telepon_baru, email_baru, id_klien):
-    if len(nama_baru) > 60:
-        print("\nGagal mengubah data klien: nama terlalu panjang, max 60 karakter.\n")
-        return
-    elif len(alamat_baru) > 100:
-        print("\nGagal mengubah data klien: alamat terlalu panjang, max 100 karakter.\n")
-        return
-    elif len(telepon_baru) > 13:
-        print("\nGagal mengubah data klien: no telepon terlalu panjang, max 14 karakter.\n")
-        return
-    elif len(email_baru) > 320:
-        print("\nGagal mengubah data klien: email terlalu panjang, max 320 karakter.\n")
-        return
-
-    query = '''UPDATE 
-                    Klien 
-                SET 
-                    nama = ?, alamat = ?, no_telepon = ?, email = ? 
-               WHERE 
-                   id_Klien = ?'''
-    print()
-    print("Edit data klien berhasil.\n") if execute_query(query, (nama_baru, alamat_baru, telepon_baru, email_baru, id_klien)) else print("Edit data klien gagal.\n")
-
-def hapus_data_klien(id_Klien):
-    query = '''UPDATE 
-                   Klien 
-               SET 
-                   isActive = 0 
-               WHERE 
-                   id_Klien = ?'''
-    print()
-    print("Hapus data klien berhasil.\n") if execute_query(query, (id_Klien,)) else print("Hapus data klien gagal.\n")
 
 # Fungsi kelola event
 def tambah_event(nama, tanggal_event, jumlah_undangan, lokasi, total_budget, id_Klien, id_JenisEvent):
