@@ -9,6 +9,7 @@ def tampilkan_menu_asisten(id_User):
         print("\n=== Menu Asisten ===")
         print("1. Kelola data klien")
         print("2. Kelola data event")
+        print("4. Lihat data vendor")
         print("0. Keluar")
 
         pilihan = input("Pilih menu: ")
@@ -17,9 +18,12 @@ def tampilkan_menu_asisten(id_User):
         if pilihan == '0':
             print("Keluar dari menu asisten.")
             break
-       
+        elif pilihan == '1':
+            menu_klien()
         elif pilihan == '2':
             menu_event(id_User)
+        elif pilihan == '4':
+            menu_vendor()
         else:
             print("Pilihan tidak valid.")
 
