@@ -407,3 +407,268 @@ def lihat_data_vendor(id_JenisVendor):
     else:
         print("Vendor dengan jenis tersebut tidak ditemukan.")
 
+# Menu untuk kelola klien
+def menu_klien():
+    while True:
+        print("--- Data Klien ---")
+
+        print("1. Lihat data klien")
+        print("2. Tambah klien")
+        print("0. Kembali")
+
+        pilihan = input("Pilih menu: ")
+        print()
+
+        if pilihan == '0':
+            break
+        elif pilihan == '1':
+            print("\n--- Semua Data Klien ---")
+            lihat_semua_data_klien()
+
+            print("1. Lihat data klien spesifik")
+            print("0. Kembali")
+
+            pilihan = input("Pilih menu: ")
+
+            if pilihan == '0':
+                break
+            elif pilihan == '1':
+                try:
+                    id_Klien = int(input("\nID klien: "))
+                except ValueError:
+                    print("\nInput tidak valid. ID klien harus berupa angka.")
+                    continue
+
+                print("\n--- Data Klien Spesifik ---")
+                result = lihat_data_klien(id_Klien)
+
+                if result != 'Klien tidak ditemukan.':
+                    print("1. Edit klien")
+                    print("2. Hapus klien")
+                    print("0. Kembali")
+
+                    pilihan = input("Pilih menu: ")
+
+                    if pilihan == '0':
+                        break
+                    elif pilihan =='1':
+                        print("--- Edit Data Klien ---")
+                        nama_baru = input("Nama baru klien: ")
+                        alamat = input("Alamat baru: ")
+                        no_telepon = input("Nomor telepon baru: ")
+                        email = input("Email baru: ")
+                        edit_data_klien(nama_baru, alamat, no_telepon, email, id_Klien)
+
+                    elif pilihan == '2':
+                        print("\nHapus Klien?")
+                        print("1. Ya")
+                        print("2. Tidak")
+                        pilihan = input("Pilih menu: ")
+
+                        if pilihan == '1':
+                            hapus_data_klien(id_Klien)
+                        elif pilihan == '2':
+                            break
+                        else:
+                            print("\nPilihan tidak valid.")
+                    else:
+                        print("\nPilihan tidak valid.")
+
+            else:
+                print("Pilihan tidak valid.")
+
+        elif pilihan == '2':
+            print("--- Tambah Data Klien ---")
+            nama = input("Nama klien: ")
+            alamat = input("Alamat: ")
+            no_telepon = input("Nomor telepon: ")
+            email = input("Email: ")
+            tanggal_registrasi = input("Tanggal registrasi (YYYYMMDD): ")
+            tambah_klien(nama, alamat, no_telepon, email, tanggal_registrasi)
+
+        else:
+            print("Pilihan tidak valid.")
+
+# Menu untuk kelola event
+def menu_event(id_User):
+    while True:
+        print("--- Kelola Data Event ---")
+        print("1. Lihat semua event")
+        print("2. Tambah event")
+        print("0. Kembali")
+
+        pilihan = input("Pilih menu: ")
+        print()
+
+        if pilihan == '0':
+            break
+        elif pilihan == '1':
+            print("\n--- Lihat Semua Event ---")
+            lihat_data_event()
+
+            print("1. Lihat event spesifik")
+            print("0. Kembali")
+
+            pilihan = input("Pilih menu: ")
+
+            if pilihan == '0':
+                break
+            elif pilihan == '1':
+                print("\n--- Lihat Event Spesifik ---")
+
+                try:
+                    id_Event = int(input("ID event: "))
+                except ValueError:
+                    print("\nInput tidak valid. ID harus berupa angka.\n")
+                    continue
+
+                result = lihat_event_spesifik(id_Event)
+                if result != "Tidak ada event untuk klien ini.":
+                    print("1. Lihat rincian budgeting")
+                    print("2. Edit event")
+                    print("3. Hapus event")
+                    print("0. Kembali")
+
+                    pilihan = input("Pilih menu: ")
+
+                    if pilihan == '0':
+                        break
+                    elif pilihan == '1':
+                        print("\n--- Rincian Budgeting ---")
+                        result = lihat_rincian_budgeting(id_Event)
+
+                        if result != 'Tidak ada rincian budgeting ditemukan untuk klien ini.':
+                            print("1. Lihat total harga dealing")
+                            print("2. Tambah harga dealing")
+                            print("3. Edit harga dealing")
+                            print("0. Kembali")
+
+                            pilihan = input("Pilih menu: ")
+
+                            if pilihan == '0':
+                                break
+                            elif pilihan == '1':
+                                print("\n--- Total Harga Dealing ---")
+                                total_budget_event(id_Event)
+                            elif pilihan == '2':
+                                print("\n--- Tambah Harga Dealing ---")
+                                try:
+                                    print("Daftar vendor yang tersedia: \n")
+                                    lihat_semua_data_vendor()
+
+                                    id_Vendor = int(input("ID vendor: "))
+                                    harga_dealing = int(input("Harga dealing: "))
+                                    tambah_harga_dealing(id_Event, id_Vendor, harga_dealing)
+                                except ValueError:
+                                    print("\nInput tidak valid, harus berupa angka.\n")
+
+                            elif pilihan == '3':
+                                print("\n--- Edit Harga Dealing ---")
+                                try:
+                                    id_Vendor = int(input("ID vendor: "))
+                                    harga_dealing = int(input("Harga dealing yang baru: "))
+                                except ValueError:
+                                    print("\nInput tidak valid, harus berupa angka.\n")
+                                    continue
+                                update_harga_dealing(id_Event, id_Vendor, harga_dealing)
+                            else:
+                                print("Pilihan tidak valid.")
+
+                    elif pilihan == '2':
+                        nama = input("Nama event: ")
+                        tanggal_event = input("Tanggal (YYYYMMDD): ")
+                        try:
+                            jumlah_undangan = int(input("Jumlah undangan: "))
+                        except ValueError:
+                            print("Input tidak valid, jumlah undangan harus berupa angka.")
+                            continue
+                        lokasi = input("Lokasi: ")
+                        try:
+                            total_budget = int(input("Total budget: "))
+                        except ValueError:
+                            print("Input tidak valid, total budget harus berupa angka.\n")
+                            continue
+                        edit_event(id_Event, nama, tanggal_event, jumlah_undangan, lokasi, total_budget)
+
+                    elif pilihan == '3':
+                        print("\nHapus Event?")
+                        print("1. Ya")
+                        print("2. Tidak")
+                        pilihan = input("Pilih menu: ")
+
+                        if pilihan == '1':
+                            hapus_event(id_Event)
+                        elif pilihan == '2':
+                            break
+                        else:
+                            print("Pilihan tidak valid.")
+
+                    else:
+                        print("Pilihan tidak valid.")
+
+            else:
+                print("Pilihan tidak valid.")
+
+        elif pilihan == '2':
+            print("Daftar jenis event yang tersedia")
+            lihat_data_jenis_event()
+
+            print('--- Input Data Event ---')
+            nama = input("Nama event: ")
+            tanggal_event = input("Tanggal event (YYYYMMDD): ")
+
+            try:
+                jumlah_undangan = int(input("Jumlah undangan: "))
+            except ValueError:
+                print("\nInput tidak valid, jumlah undangan berupa angka.\n")
+                continue
+
+            lokasi = input("Lokasi: ")
+
+            try:
+                total_budget = int(input("Total budget: "))
+                id_Klien = int(input("ID klien: "))
+                id_JenisEvent = int(input("ID jenis event: "))
+            except ValueError:
+                print("\nInput tidak valid, harus berupa angka.\n")
+                continue
+            tambah_event(nama, tanggal_event, jumlah_undangan, lokasi, total_budget, id_Klien, id_JenisEvent)
+            tambah_user_event(id_User)
+
+        else:
+            print("Pilihan tidak valid.")
+
+# Menu untuk laporan
+def menu_laporan(id_User):
+    while True:
+        print("--- Laporan Event ---")
+        print("1. Event yang sudah selesai")
+        print("2. Event yang sedang berlangsung")
+        print("3. Laporan berdasarkan jenis event")
+        print("0. Kembali")
+
+        pilihan = input("Pilih menu: ")
+        print()
+
+        if pilihan == '0':
+            break
+        elif pilihan == '1':
+            print("\n--- Completed Event ---")
+            completed_event(id_User)
+        elif pilihan == '2':
+            print("\n--- Upcoming Event ---")
+            upcoming_event(id_User)
+        elif pilihan == '3':
+            print("\n--- Laporan Event berdasarkan Jenis Event ---")
+
+            print("Jenis event yang tersedia: ")
+            lihat_data_jenis_event()
+
+            try:
+                id_JenisEvent = int(input("ID Jenis event: "))
+            except ValueError:
+                print("Input tidak valid, ID jenis event harus berupa angka.")
+                continue
+            lihat_event_berdasarkan_jenis(id_User, id_JenisEvent)
+        else:
+            print("Pilihan tidak valid.")
