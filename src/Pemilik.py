@@ -1,3 +1,4 @@
+from Asisten import lihat_event_berdasarkan_jenis
 from Database import fetch_one, fetch_all, execute_query
 from tabulate import tabulate
 import textwrap
@@ -5,14 +6,18 @@ import textwrap
 # Menu utama untuk pemilik
 def tampilkan_menu_pemilik():
     MENU_OPTIONS = {
+        '1': menu_kelola_asisten,
         '2': menu_kelola_vendor,
-        '3': menu_kelola_jenis_vendor
+        '3': menu_kelola_jenis_vendor,
+        '4': menu_laporan_event
     }
 
     while True:
         print("\n=== Menu Pemilik ===")
+        print("1. Kelola asisten")
         print("2. Kelola data vendor")
         print("3. Kelola data jenis vendor")
+        print("4. Lihat laporan event")
         print("0. Keluar")
 
         pilihan = input("Pilih menu: ")
@@ -542,3 +547,42 @@ def menu_kelola_vendor():
             print("Pilihan tidak valid.")
 
         pass
+
+    # Menu untuk laporan event
+def menu_laporan_event():
+    while True:
+        print("--- Laporan Event ---")
+        print("1. Lihat event terdekat")
+        print("2. Lihat event yang telah selesai")
+        print("3. Lihat event yang dibatalkan")
+        print("4. Laporan berdasarkan jenis event")
+        print("0. Kembali")
+
+        pilihan = input("Pilih menu: ")
+        print()
+
+        if pilihan == '0':
+            break
+        elif pilihan == '1':
+            print("--- Event Terdekat yang Harus Ditangani ---")
+            lihat_event_terdekat()
+        elif pilihan == '2':
+            print("--- Event yang Sudah Selesai ---")
+            lihat_event_selesai()
+        elif pilihan == '3':
+            print("--- Event yang Dibatalkan ---")
+            lihat_event_batal()
+        elif pilihan == '4':
+            print("\n--- Laporan Event berdasarkan Jenis Event ---")
+
+            print("Jenis event yang tersedia: ")
+            lihat_data_jenis_event()
+
+            try:
+                id_JenisEvent = int(input("ID Jenis event: "))
+            except ValueError:
+                print("Input tidak valid, ID jenis event harus berupa angka.")
+                continue
+            lihat_event_berdasarkan_jenis(id_JenisEvent)
+        else:
+            print("Pilihan tidak valid.")

@@ -633,3 +633,38 @@ def menu_event(id_User):
 
         else:
             print("Pilihan tidak valid.")
+
+# Menu untuk laporan
+def menu_laporan(id_User):
+    while True:
+        print("--- Laporan Event ---")
+        print("1. Event yang sudah selesai")
+        print("2. Event yang sedang berlangsung")
+        print("3. Laporan berdasarkan jenis event")
+        print("0. Kembali")
+
+        pilihan = input("Pilih menu: ")
+        print()
+
+        if pilihan == '0':
+            break
+        elif pilihan == '1':
+            print("\n--- Completed Event ---")
+            completed_event(id_User)
+        elif pilihan == '2':
+            print("\n--- Upcoming Event ---")
+            upcoming_event(id_User)
+        elif pilihan == '3':
+            print("\n--- Laporan Event berdasarkan Jenis Event ---")
+
+            print("Jenis event yang tersedia: ")
+            lihat_data_jenis_event()
+
+            try:
+                id_JenisEvent = int(input("ID Jenis event: "))
+            except ValueError:
+                print("Input tidak valid, ID jenis event harus berupa angka.")
+                continue
+            lihat_event_berdasarkan_jenis(id_User, id_JenisEvent)
+        else:
+            print("Pilihan tidak valid.")
