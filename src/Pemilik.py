@@ -9,7 +9,7 @@ def tampilkan_menu_pemilik():
         '1': menu_kelola_asisten,
         '2': menu_kelola_vendor,
         '3': menu_kelola_jenis_vendor,
-        '4': menu_laporan_kerjasama
+        '4': menu_laporan_kerjasama,
         '5': menu_laporan_event
     }
 
